@@ -17,13 +17,10 @@
             height: 100px;
             background-color: blue;
             position: absolute;
-        }
-
-        #enemy-small-container {
-            position: absolute;
-            left: 50%;
-            bottom: 10px;
-            transform: translateX(-50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: shakeAnimation 0.5s ease-in-out infinite;
         }
 
         #enemy-small {
@@ -31,7 +28,6 @@
             height: 40px;
             background-color: red;
             position: absolute;
-            transform: translateY(5px);
         }
 
         #attack-btn {
@@ -39,11 +35,6 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-        }
-
-        /* Agregar el código CSS para la animación de temblor */
-        .shake {
-            animation: shakeAnimation 0.5s ease-in-out infinite;
         }
 
         @keyframes shakeAnimation {
@@ -62,10 +53,9 @@
 <body>
     <div id="battle-container">
         <p id="enemy-health">Enemy Health: 100</p>
-        <div id="enemy"></div>
-
-        <!-- Envolver el cuadrado rojo en un contenedor separado -->
-        <div id="enemy-small-container">
+        
+        <!-- Azul (enemy) contiene al rojo (enemy-small) -->
+        <div id="enemy">
             <div id="enemy-small"></div>
         </div>
 
@@ -84,13 +74,6 @@
                 alert('¡Has derrotado al enemigo!');
                 resetBattle();
             } else {
-                // Agregar clase de temblor
-                document.getElementById('enemy-small').classList.add('shake');
-                // Quitar la clase después de un tiempo (1000 milisegundos = 1 segundo)
-                setTimeout(() => {
-                    document.getElementById('enemy-small').classList.remove('shake');
-                }, 1000);
-
                 document.getElementById('enemy-health').innerText = `Enemy Health: ${enemyHealth}`;
             }
         });
