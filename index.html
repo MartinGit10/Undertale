@@ -20,12 +20,22 @@
         }
 
         #enemy-small {
-            width: 40px; /* Tamaño aumentado */
-            height: 40px; /* Tamaño aumentado */
+            width: 40px;
+            height: 40px;
             background-color: red;
             position: absolute;
-            left: 50%; /* Centrado horizontalmente */
-            transform: translateX(-50%); /* Ajuste para centrar */
+            left: 50%;
+            transform: translateX(-50%);
+            animation: froggitAnimation 1s ease-in-out infinite alternate; /* Animación Froggit */
+        }
+
+        @keyframes froggitAnimation {
+            from {
+                transform: translateY(0) rotate(0deg);
+            }
+            to {
+                transform: translateY(-10px) rotate(-10deg);
+            }
         }
     </style>
 </head>
@@ -40,12 +50,12 @@
     <script>
         // game.js
         let enemyHealth = 100;
-        let enemySmallDirection = 1; // 1 para derecha, -1 para izquierda
-        const enemySmallSpeed = 1; // Velocidad reducida
-        const enemySmallMovement = 5; // Mover más pixeles en el eje X
+        let enemySmallDirection = 1;
+        const enemySmallSpeed = 1;
+        const enemySmallMovement = 5;
 
         document.getElementById('attack-btn').addEventListener('click', () => {
-            const damage = Math.floor(Math.random() * 10) + 1; // Daño aleatorio entre 1 y 10
+            const damage = Math.floor(Math.random() * 10) + 1;
             enemyHealth -= damage;
 
             if (enemyHealth <= 0) {
@@ -64,21 +74,9 @@
         function moveEnemySmall() {
             const enemySmall = document.getElementById('enemy-small');
             const enemySmallPosition = parseInt(getComputedStyle(enemySmall).left);
-            
-            // Cambiar la dirección cuando alcanza los bordes
+
             if (enemySmallPosition <= 0 || enemySmallPosition >= 160) {
                 enemySmallDirection *= -1;
             }
 
-            // Mover el cuadrado rojo
-            enemySmall.style.left = (enemySmallPosition + enemySmallSpeed * enemySmallDirection * enemySmallMovement) + 'px';
-
-            // Llamada recursiva para animación continua
-            requestAnimationFrame(moveEnemySmall);
-        }
-
-        // Iniciar la animación cuando se carga la página
-        moveEnemySmall();
-    </script>
-</body>
-</html>
+            enemySmall.style.left = (enemySmallPosition + enemySmallSpeed * enemySmallDirection * enemySmallMove
