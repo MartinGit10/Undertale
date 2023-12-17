@@ -5,18 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Undertale Battle</title>
     <style>
-        /* Agrega tus estilos aquí */
+        /* Estilos para los cuadros */
+        #battle-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+        }
+
         #enemy {
-            width: 100px; /* Ajusta el tamaño según sea necesario */
+            width: 100px;
             height: 100px;
+            background-color: blue;
+            position: absolute;
+        }
+
+        #enemy-small {
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            position: absolute;
         }
     </style>
 </head>
 <body>
     <div id="battle-container">
         <p id="enemy-health">Enemy Health: 100</p>
-        <button id="attack-btn">FIGHT</button>
-        <img id="enemy" src="Animaci%3Fn_Sans.gif" alt="Enemy Sprite">
+        <button id="attack-btn">Attack</button>
+        <div id="enemy"></div>
+        <div id="enemy-small"></div>
     </div>
 
     <script src="game.js"></script>
