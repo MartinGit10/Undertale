@@ -25,17 +25,25 @@
             background-color: red;
             position: absolute;
             left: 50%;
-            transform: translateX(-50%);
-            animation: froggitAnimation 1s ease-in-out infinite alternate; /* Animación Froggit */
+            bottom: 0; /* Coloca el cuadrado rojo en la parte inferior del azul */
+            transform: translateX(-50%) translateY(5px); /* Desplázalo 5 píxeles hacia arriba */
+            animation: froggitAnimation 2s ease-in-out infinite alternate; /* Animación Froggit mejorada */
         }
 
         @keyframes froggitAnimation {
             from {
-                transform: translateY(0) rotate(0deg);
+                transform: translateX(-50%) translateY(5px) rotate(0deg);
             }
             to {
-                transform: translateY(-10px) rotate(-10deg);
+                transform: translateX(-50%) translateY(5px) rotate(180deg);
             }
+        }
+
+        #attack-btn {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
         }
     </style>
 </head>
@@ -50,9 +58,6 @@
     <script>
         // game.js
         let enemyHealth = 100;
-        let enemySmallDirection = 1;
-        const enemySmallSpeed = 1;
-        const enemySmallMovement = 5;
 
         document.getElementById('attack-btn').addEventListener('click', () => {
             const damage = Math.floor(Math.random() * 10) + 1;
@@ -70,13 +75,6 @@
             enemyHealth = 100;
             document.getElementById('enemy-health').innerText = `Enemy Health: ${enemyHealth}`;
         }
-
-        function moveEnemySmall() {
-            const enemySmall = document.getElementById('enemy-small');
-            const enemySmallPosition = parseInt(getComputedStyle(enemySmall).left);
-
-            if (enemySmallPosition <= 0 || enemySmallPosition >= 160) {
-                enemySmallDirection *= -1;
-            }
-
-            enemySmall.style.left = (enemySmallPosition + enemySmallSpeed * enemySmallDirection * enemySmallMove
+    </script>
+</body>
+</html>
