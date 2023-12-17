@@ -20,10 +20,12 @@
         }
 
         #enemy-small {
-            width: 20px;
-            height: 20px;
+            width: 40px; /* Tamaño aumentado */
+            height: 40px; /* Tamaño aumentado */
             background-color: red;
             position: absolute;
+            left: 50%; /* Centrado horizontalmente */
+            transform: translateX(-50%); /* Ajuste para centrar */
         }
     </style>
 </head>
@@ -39,7 +41,8 @@
         // game.js
         let enemyHealth = 100;
         let enemySmallDirection = 1; // 1 para derecha, -1 para izquierda
-        const enemySmallSpeed = 2; // Ajusta la velocidad según sea necesario
+        const enemySmallSpeed = 1; // Velocidad reducida
+        const enemySmallMovement = 5; // Mover más pixeles en el eje X
 
         document.getElementById('attack-btn').addEventListener('click', () => {
             const damage = Math.floor(Math.random() * 10) + 1; // Daño aleatorio entre 1 y 10
@@ -63,12 +66,12 @@
             const enemySmallPosition = parseInt(getComputedStyle(enemySmall).left);
             
             // Cambiar la dirección cuando alcanza los bordes
-            if (enemySmallPosition <= 0 || enemySmallPosition >= 180) {
+            if (enemySmallPosition <= 0 || enemySmallPosition >= 160) {
                 enemySmallDirection *= -1;
             }
 
             // Mover el cuadrado rojo
-            enemySmall.style.left = (enemySmallPosition + enemySmallSpeed * enemySmallDirection) + 'px';
+            enemySmall.style.left = (enemySmallPosition + enemySmallSpeed * enemySmallDirection * enemySmallMovement) + 'px';
 
             // Llamada recursiva para animación continua
             requestAnimationFrame(moveEnemySmall);
