@@ -32,16 +32,6 @@
             background-color: red;
             position: absolute;
             transform: translateY(5px);
-            animation: froggitAnimation 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes froggitAnimation {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(180deg);
-            }
         }
 
         #attack-btn {
@@ -49,6 +39,23 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
+        }
+
+        /* Agregar el código CSS para la animación de temblor */
+        .shake {
+            animation: shakeAnimation 0.5s ease-in-out infinite;
+        }
+
+        @keyframes shakeAnimation {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            25%, 75% {
+                transform: translateX(-5px);
+            }
+            50% {
+                transform: translateX(5px);
+            }
         }
     </style>
 </head>
@@ -77,6 +84,13 @@
                 alert('¡Has derrotado al enemigo!');
                 resetBattle();
             } else {
+                // Agregar clase de temblor
+                document.getElementById('enemy-small').classList.add('shake');
+                // Quitar la clase después de un tiempo (1000 milisegundos = 1 segundo)
+                setTimeout(() => {
+                    document.getElementById('enemy-small').classList.remove('shake');
+                }, 1000);
+
                 document.getElementById('enemy-health').innerText = `Enemy Health: ${enemyHealth}`;
             }
         });
